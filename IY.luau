@@ -9107,6 +9107,20 @@ addcmd('reset',{},function(args, speaker)
 	speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
 end)
 
+addcmd('respawn',{},function(args, speaker)
+local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
+	execCmd("reset")
+wait(game.Players.RespawnTime)
+	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
+end)
+
+addcmd('refresh',{'re'},function(args, speaker)
+	local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
+	execCmd("reset")
+wait(game.Players.RespawnTime)
+	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
+end)
+
 addcmd('freezeanims',{},function(args, speaker)
 	local Humanoid = speaker.Character:FindFirstChildOfClass("Humanoid") or speaker.Character:FindFirstChildOfClass("AnimationController")
 	local ActiveTracks = Humanoid:GetPlayingAnimationTracks()
@@ -9124,21 +9138,6 @@ addcmd('unfreezeanims',{},function(args, speaker)
 end)
 
 
-
-
-addcmd('respawn',{},function(args, speaker)
-local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
-	execCmd("reset")
-wait(game.Players.RespawnTime)
-	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
-end)
-
-addcmd('refresh',{'re'},function(args, speaker)
-	local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
-	execCmd("reset")
-wait(game.Players.RespawnTime)
-	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
-end)
 
 addcmd('god',{},function(args, speaker)
 	local Cam = workspace.CurrentCamera
