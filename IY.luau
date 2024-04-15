@@ -9129,12 +9129,15 @@ end)
 addcmd('respawn',{},function(args, speaker)
 local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
 	execCmd("reset")
-wait(5)
+wait(game.Players.RespawnTime)
 	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
 end)
 
 addcmd('refresh',{'re'},function(args, speaker)
-	refresh(speaker)
+	local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
+	execCmd("reset")
+wait(game.Players.RespawnTime)
+	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
 end)
 
 addcmd('god',{},function(args, speaker)
