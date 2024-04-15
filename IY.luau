@@ -4724,6 +4724,7 @@ CMDs[#CMDs + 1] = {NAME = 'use2022materials / 2022materials', DESC = 'Enables 20
 CMDs[#CMDs + 1] = {NAME = 'unuse2022materials / un2022materials', DESC = 'Disables 2022 material textures'}
 CMDs[#CMDs + 1] = {NAME = 'promptr6', DESC = 'Prompts the game to switch your rig type to R6'}
 CMDs[#CMDs + 1] = {NAME = 'promptr15', DESC = 'Prompts the game to switch your rig type to R15'}
+CMDs[#CMDs + 1] = {NAME = 'arsenal', DESC = 'Loads Thunder Client V2'}
 wait()
 
 for i = 1, #CMDs do
@@ -7665,14 +7666,7 @@ end)
 addcmd('savegame',{'saveplace'},function(args, speaker)
 	if saveinstance then
 		notify("Loading","Downloading game. This will take a while")
-		if getsynasset then
-			saveinstance()
-		else
-			saveinstance(game)
-		end
-		notify('Game Saved','Saved place to the workspace folder within your exploit folder.')
-	else
-		notify('Incompatible Exploit','Your exploit does not support this command (missing saveinstance)')
+		saveinstance(game, {FileName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name, IgnoreArchivable = true})
 	end
 end)
 
@@ -9133,7 +9127,10 @@ end)
 
 
 addcmd('respawn',{},function(args, speaker)
-	respawn(speaker)
+local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
+	execCmd("reset")
+wait(5)
+	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
 end)
 
 addcmd('refresh',{'re'},function(args, speaker)
@@ -12185,7 +12182,10 @@ addcmd('autokeypress',{'keypress'},function(args, speaker)
 		notify('Auto Key Press',"Your exploit doesn't have the ability to use auto key press")
 	end
 end)
-
+addcmd('arsenal',{},function(args, speaker)
+getgenv().thunderclient = true
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/verified/dca3e69649ed196af0ac6577f743a0ae.lua"))()
+end)
 addcmd('unautokeypress',{'noautokeypress','unkeypress','nokeypress'},function(args, speaker)
 	autoKeyPressing = false
 	if cancelAutoKeyPress then cancelAutoKeyPress:Disconnect() end
