@@ -9109,9 +9109,9 @@ end)
 
 addcmd('respawn',{},function(args, speaker)
 local position = game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame
-	execCmd("reset")
+	speaker.Character:FindFirstChildOfClass("Humanoid"):ChangeState(Enum.HumanoidStateType.Dead)
 wait(game.Players.RespawnTime)
-	game.Player.LocalPlayer.Character.HumanoidRootPart.CFrame = position
+	speaker.Character.HumanoidRootPart.CFrame = position
 end)
 
 addcmd('refresh',{'re'},function(args, speaker)
